@@ -38,7 +38,9 @@ evolutionary game theory, repeated Prisoner's Dilemma, replicator--mutator dynam
 
 \section{Introduction}
 
-The Prisoner's Dilemma expresses a conflict between individual and collective benefit: defection is individually favored in a single encounter, although mutual cooperation yields the larger joint return. Repeated interaction can change the evolutionary outcome because strategies may condition present behavior on earlier actions \cite{axelrod1981,nowak2006}. Tit-for-Tat (TFT), which cooperates initially and then copies its opponent's preceding action, can punish unconditional defection while continuing to cooperate with unconditional cooperators. Evolutionary game dynamics provide a natural framework for asking whether such behavior can protect a population dominated by unconditional cooperation \cite{hofbauer1998,page2002}.
+The Prisoner's Dilemma expresses a conflict between individual and collective benefit: defection is individually favored in a single encounter, although mutual cooperation yields the larger joint return. Repeated interaction can change the evolutionary outcome because strategies may condition present behavior on earlier actions \cite{axelrod1981,axelrod1984,nowak2006}. Tit-for-Tat (TFT), which cooperates initially and then copies its opponent's preceding action, can punish unconditional defection while continuing to cooperate with unconditional cooperators \cite{nowak1992}. Later work has shown that the repeated game supports a much broader space of conditional and memory-dependent strategies \cite{stewart2013}.
+
+Evolutionary game dynamics provide a natural framework for asking whether such behavior can protect a population dominated by unconditional cooperation. Replicator and selection-mutation equations describe the corresponding infinite-population dynamics \cite{taylor1978,hofbauer1998,hofbauer1985,hadeler1981,page2002}. Mutation can change both the number and stability of equilibria, including in multi-strategy and noisy social dilemmas \cite{antal2009,chen2024}. Finite-population formulations add demographic stochasticity and distinguish invasion, extinction, and fixation events \cite{moran1962,nowak2004,traulsen2006,fudenberg2006}. In repeated games specifically, mutation can reorganize cycles of cooperation and defection or promote diverse cooperative communities \cite{imhof2005,tkadlec2023}.
 
 Pal, Lambert, and Nowak \cite{pal2025} studied a rescue mechanism with three strategies: unconditional cooperation (ALLC), TFT, and unconditional defection (ALLD). In their principal model, switching from ALLC to TFT occurs at a constant rate. TFT can suppress an ALLD invasion, but constant switching also continues after the invasion has ended. Importantly for the present study, Pal et al. also considered switching proportional to ALLD abundance in their electronic supplementary material, Figure S8. The feedback rule used here is therefore not claimed as a new mechanism.
 
@@ -78,7 +80,7 @@ To represent the cost of maintaining the responsive capability, the payoff of AL
 
 \subsection{Finite-population process}
 
-The stochastic model contains $N=100$ individuals and begins with $N-1$ ALLC and one ALLD. Payoffs are calculated against the other $N-1$ individuals. At each update, a parent is sampled with weight
+The stochastic model is a frequency-dependent Moran birth-death process \cite{moran1962,nowak2004}. It contains $N=100$ individuals and begins with $N-1$ ALLC and one ALLD. Payoffs are calculated against the other $N-1$ individuals. At each update, a parent is sampled with weight
 \begin{equation}
 F_i=\exp(w\pi_i), \qquad w=1,
 \label{eq:fitness}
@@ -190,38 +192,61 @@ For the three-strategy rescue model, defector-responsive switching trades slower
 
 \section*{Data and Code Availability}
 
-The supplementary archive contains the Python source, numerical data, and figure files needed to reproduce every result reported here. Running \texttt{python revised\_analysis.py} regenerates the deterministic and finite-population outputs. A permanent public repository URL may be added to the accepted version.
+The Python source, numerical data, and figure files needed to reproduce every result reported here are available at \url{https://github.com/aarushgunjal/defector_responsive_strategy_switching}. Running \texttt{python revised\_analysis.py} regenerates the deterministic and finite-population outputs.
 
 \section*{Declaration of Competing Interest}
 
 The author declares no competing interests.
 
-\IEEEtriggeratref{6}
-\begin{thebibliography}{10}
+\IEEEtriggeratref{11}
+\begin{thebibliography}{20}
 
 \bibitem{axelrod1981}
 R. Axelrod and W. D. Hamilton, ``The evolution of cooperation,'' \emph{Science}, vol. 211, pp. 1390--1396, 1981.\\
 \url{https://doi.org/10.1126/science.7466396}
 
+\bibitem{axelrod1984}
+R. Axelrod, \emph{The Evolution of Cooperation}. New York, NY, USA: Basic Books, 1984.
+
 \bibitem{nowak2006}
 M. A. Nowak, ``Five rules for the evolution of cooperation,'' \emph{Science}, vol. 314, pp. 1560--1563, 2006.\\
 \url{https://doi.org/10.1126/science.1133755}
+
+\bibitem{nowak1992}
+M. A. Nowak and K. Sigmund, ``Tit for tat in heterogeneous populations,'' \emph{Nature}, vol. 355, pp. 250--253, 1992.\\
+\url{https://doi.org/10.1038/355250a0}
+
+\bibitem{stewart2013}
+A. J. Stewart and J. B. Plotkin, ``From extortion to generosity, evolution in the iterated Prisoner's Dilemma,'' \emph{Proceedings of the National Academy of Sciences}, vol. 110, pp. 15348--15353, 2013.\\
+\url{https://doi.org/10.1073/pnas.1306246110}
+
+\bibitem{taylor1978}
+P. D. Taylor and L. B. Jonker, ``Evolutionarily stable strategies and game dynamics,'' \emph{Mathematical Biosciences}, vol. 40, pp. 145--156, 1978.\\
+\url{https://doi.org/10.1016/0025-5564(78)90077-9}
 
 \bibitem{hofbauer1998}
 J. Hofbauer and K. Sigmund, \emph{Evolutionary Games and Population Dynamics}. Cambridge, UK: Cambridge University Press, 1998.\\
 \url{https://doi.org/10.1017/CBO9781139173179}
 
+\bibitem{hofbauer1985}
+J. Hofbauer, ``The selection mutation equation,'' \emph{Journal of Mathematical Biology}, vol. 23, pp. 41--53, 1985.\\
+\url{https://doi.org/10.1007/BF00276557}
+
+\bibitem{hadeler1981}
+K. P. Hadeler, ``Stable polymorphisms in a selection mutation model,'' \emph{SIAM Journal on Applied Mathematics}, vol. 41, pp. 1--7, 1981.\\
+\url{https://doi.org/10.1137/0141001}
+
 \bibitem{page2002}
 K. M. Page and M. A. Nowak, ``Unifying evolutionary dynamics,'' \emph{Journal of Theoretical Biology}, vol. 219, pp. 93--98, 2002.\\
 \url{https://doi.org/10.1006/jtbi.2002.3066}
 
-\bibitem{pal2025}
-S. Pal, A. Lambert, and M. A. Nowak, ``Stabilizing unconditional cooperation,'' \emph{Proceedings of the Royal Society A}, vol. 481, art. 20240945, 2025.\\
-\url{https://doi.org/10.1098/rspa.2024.0945}
+\bibitem{antal2009}
+T. Antal, A. Traulsen, H. Ohtsuki, C. E. Tarnita, and M. A. Nowak, ``Mutation-selection equilibrium in games with multiple strategies,'' \emph{Journal of Theoretical Biology}, vol. 258, pp. 614--622, 2009.\\
+\url{https://doi.org/10.1016/j.jtbi.2009.02.010}
 
-\bibitem{bergin1996}
-J. Bergin and B. L. Lipman, ``Evolution with state-dependent mutations,'' \emph{Econometrica}, vol. 64, pp. 943--956, 1996.\\
-\url{https://www.jstor.org/stable/2171851}
+\bibitem{chen2024}
+L. Chen, C. Deng, M. H. Duong, and T. A. Han, ``On the number of equilibria of the replicator-mutator dynamics for noisy social dilemmas,'' \emph{Chaos, Solitons \& Fractals}, vol. 180, art. 114565, 2024.\\
+\url{https://doi.org/10.1016/j.chaos.2024.114565}
 
 \bibitem{moran1962}
 P. A. P. Moran, \emph{The Statistical Processes of Evolutionary Theory}. Oxford, UK: Clarendon Press, 1962.
@@ -230,13 +255,29 @@ P. A. P. Moran, \emph{The Statistical Processes of Evolutionary Theory}. Oxford,
 M. A. Nowak, A. Sasaki, C. Taylor, and D. Fudenberg, ``Emergence of cooperation and evolutionary stability in finite populations,'' \emph{Nature}, vol. 428, pp. 646--650, 2004.\\
 \url{https://doi.org/10.1038/nature02414}
 
-\bibitem{hofbauer1985}
-J. Hofbauer, ``The selection mutation equation,'' \emph{Journal of Mathematical Biology}, vol. 23, pp. 41--53, 1985.\\
-\url{https://doi.org/10.1007/BF00276557}
+\bibitem{traulsen2006}
+A. Traulsen, M. A. Nowak, and J. M. Pacheco, ``Stochastic dynamics of invasion and fixation,'' \emph{Physical Review E}, vol. 74, art. 011909, 2006.\\
+\url{https://doi.org/10.1103/PhysRevE.74.011909}
 
-\bibitem{nowak1992}
-M. A. Nowak and K. Sigmund, ``Tit for tat in heterogeneous populations,'' \emph{Nature}, vol. 355, pp. 250--253, 1992.\\
-\url{https://doi.org/10.1038/355250a0}
+\bibitem{fudenberg2006}
+D. Fudenberg and L. A. Imhof, ``Imitation processes with small mutations,'' \emph{Journal of Economic Theory}, vol. 131, pp. 251--262, 2006.\\
+\url{https://doi.org/10.1016/j.jet.2005.04.006}
+
+\bibitem{imhof2005}
+L. A. Imhof, D. Fudenberg, and M. A. Nowak, ``Evolutionary cycles of cooperation and defection,'' \emph{Proceedings of the National Academy of Sciences}, vol. 102, pp. 10797--10800, 2005.\\
+\url{https://doi.org/10.1073/pnas.0502589102}
+
+\bibitem{tkadlec2023}
+J. Tkadlec, C. Hilbe, and M. A. Nowak, ``Mutation enhances cooperation in direct reciprocity,'' \emph{Proceedings of the National Academy of Sciences}, vol. 120, art. e2221080120, 2023.\\
+\url{https://doi.org/10.1073/pnas.2221080120}
+
+\bibitem{pal2025}
+S. Pal, A. Lambert, and M. A. Nowak, ``Stabilizing unconditional cooperation,'' \emph{Proceedings of the Royal Society A}, vol. 481, art. 20240945, 2025.\\
+\url{https://doi.org/10.1098/rspa.2024.0945}
+
+\bibitem{bergin1996}
+J. Bergin and B. L. Lipman, ``Evolution with state-dependent mutations,'' \emph{Econometrica}, vol. 64, pp. 943--956, 1996.\\
+\url{https://www.jstor.org/stable/2171851}
 
 \end{thebibliography}
 

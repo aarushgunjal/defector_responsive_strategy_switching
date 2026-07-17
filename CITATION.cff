@@ -7,6 +7,8 @@ authors:
     given-names: Aarush
 version: 1.0.0
 date-released: 2026-07-17
+repository-code: "https://github.com/aarushgunjal/defector_responsive_strategy_switching"
+url: "https://github.com/aarushgunjal/defector_responsive_strategy_switching"
 preferred-citation:
   type: article
   title: "Analytical and Finite-Population Properties of Defector-Responsive Strategy Switching"
