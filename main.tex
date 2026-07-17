@@ -1,0 +1,243 @@
+\documentclass[11pt,a4paper,conference]{IEEEtran}
+
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath,amssymb}
+\usepackage{booktabs}
+\usepackage{graphicx}
+\usepackage{url}
+\usepackage{etoolbox}
+
+% IEEEtran inserts an em dash after the abstract label by default.
+% Use a colon so the compiled paper contains no em dashes.
+\makeatletter
+\patchcmd{\abstract}{\textit{\abstractname}---}{\textit{\abstractname}:\ }{}
+  {\PackageError{main}{Could not replace the abstract em dash}{}}
+\makeatother
+
+\newtheorem{proposition}{Proposition}
+
+\begin{document}
+
+\title{Analytical and Finite-Population Properties of Defector-Responsive Strategy Switching}
+
+\author{\IEEEauthorblockN{Aarush Gunjal}
+\IEEEauthorblockA{Newark Charter School\\
+Newark, Delaware, USA\\
+Email: aarushgunjal1@gmail.com}}
+
+\maketitle
+
+\begin{abstract}
+Defector-responsive switching from unconditional cooperation to Tit-for-Tat has been proposed as a way to rescue cooperation in the repeated Prisoner's Dilemma. The response rule itself was presented by Pal and coauthors; here we study analytical and finite-population consequences that were not characterized there. We first compare constant switching with switching proportional to the frequency of unconditional defectors. When maintaining the responsive mechanism reduces the payoff of unconditional cooperators, we derive an exact break-even cost for general benefit and cost parameters and give the conditions under which the relevant boundary equilibria resist invasion by defectors. We then implement a finite-population Moran process in which continuous switching intensities are mapped to valid per-update probabilities and cooperation is measured for a fixed period after rescue. Constant switching rapidly creates the retaliatory strategy but continues to remove unconditional cooperators after defectors disappear. Responsive switching can rescue more slowly at low intensity, but it shuts off after rescue and therefore preserves unconditional cooperation. These results identify a quantitative cost constraint and a finite-population tradeoff for an existing feedback mechanism, while also clarifying the biological assumptions required to interpret strategy switching as a phenotypic response.
+\end{abstract}
+
+\begin{IEEEkeywords}
+evolutionary game theory, repeated Prisoner's Dilemma, replicator--mutator dynamics, state-dependent switching, cooperation, Moran process
+\end{IEEEkeywords}
+
+\section{Introduction}
+
+The Prisoner's Dilemma expresses a conflict between individual and collective benefit: defection is individually favored in a single encounter, although mutual cooperation yields the larger joint return. Repeated interaction can change the evolutionary outcome because strategies may condition present behavior on earlier actions \cite{axelrod1981,nowak2006}. Tit-for-Tat (TFT), which cooperates initially and then copies its opponent's preceding action, can punish unconditional defection while continuing to cooperate with unconditional cooperators. Evolutionary game dynamics provide a natural framework for asking whether such behavior can protect a population dominated by unconditional cooperation \cite{hofbauer1998,page2002}.
+
+Pal, Lambert, and Nowak \cite{pal2025} studied a rescue mechanism with three strategies: unconditional cooperation (ALLC), TFT, and unconditional defection (ALLD). In their principal model, switching from ALLC to TFT occurs at a constant rate. TFT can suppress an ALLD invasion, but constant switching also continues after the invasion has ended. Importantly for the present study, Pal et al. also considered switching proportional to ALLD abundance in their electronic supplementary material, Figure S8. The feedback rule used here is therefore not claimed as a new mechanism.
+
+Our contribution is instead to characterize two consequences of that rule. First, we add a payoff cost for maintaining a defector-responsive switching capability. We derive the exact cost at which the cooperative boundary equilibrium matches its constant-switching counterpart for arbitrary benefit $b$ and cooperation cost $c$, and we state the stability restrictions under which this comparison is meaningful. Second, we revise the finite-population test. A continuous switching intensity is converted to a probability rather than used directly as one, and ``survival quality'' is evaluated after a fixed post-rescue horizon rather than at an absorbing ALLC state that does not exist under constant one-way switching.
+
+We use the phrase \emph{strategy switching} rather than genetic mutation throughout. The equations could describe mutation, learning, or reversible phenotypic change, but the proposed dependence on current defector abundance requires sensing or information about population state. Treating it as a phenotypic response is consequently the least restrictive interpretation. State-dependent perturbations have a longer history in evolutionary models \cite{bergin1996}; the questions addressed here concern this particular feedback within the three-strategy rescue model.
+
+\section{Model}
+
+\subsection{Payoffs and deterministic dynamics}
+
+Let $x$, $y$, and $z$ be the frequencies of ALLC, TFT, and ALLD, respectively, with $x+y+z=1$. We follow the payoff convention of Pal et al. \cite{pal2025}:
+\begin{equation}
+\label{eq:matrix}
+\begin{array}{c|ccc}
+ & \mathrm{ALLC} & \mathrm{TFT} & \mathrm{ALLD}\\ \hline
+\mathrm{ALLC} & b-c & b-c & -c\\
+\mathrm{TFT}  & b-c & (b-c)/2 & 0\\
+\mathrm{ALLD} & b   & 0       & 0
+\end{array}.
+\end{equation}
+Writing $q=b-c>0$, the expected payoffs are
+\begin{align}
+f_C &= q(x+y)-cz, &
+f_T &= q(x+y/2), &
+f_D &= bx, \label{eq:payoffs}
+\end{align}
+and $\bar f=xf_C+yf_T+zf_D$. One-way switching from ALLC to TFT gives
+\begin{align}
+\dot x &=x(f_C-\bar f)-\mu x,\nonumber\\
+\dot y &=y(f_T-\bar f)+\mu x,\label{eq:replicator}\\
+\dot z &=z(f_D-\bar f).\nonumber
+\end{align}
+We compare a constant rule, $\mu=\mu_0$, with the defector-responsive rule $\mu=\mu_0z$.
+
+To represent the cost of maintaining the responsive capability, the payoff of ALLC is reduced by $k\geq0$. Thus, $f_C$ is replaced by $f_C-k$ in its replicator term and the population mean becomes $\bar f_k=\bar f-kx$. The switching flow remains $\mu_0zx$. This cost represents readiness to sense and respond, not the energetic cost of an individual switching event.
+
+\subsection{Finite-population process}
+
+The stochastic model contains $N=100$ individuals and begins with $N-1$ ALLC and one ALLD. Payoffs are calculated against the other $N-1$ individuals. At each update, a parent is sampled with weight
+\begin{equation}
+F_i=\exp(w\pi_i), \qquad w=1,
+\label{eq:fitness}
+\end{equation}
+where $\pi_i$ is the expected game payoff, and a uniformly sampled individual is replaced. Exponential mapping keeps fitness positive even when game payoffs are negative. If the parent is ALLC, its offspring switches to TFT with probability
+\begin{equation}
+p(\lambda)=1-\exp(-\lambda),
+\label{eq:rateprob}
+\end{equation}
+where $\lambda=\mu_0$ for constant switching and $\lambda=\mu_0z$ for responsive switching. Equation \eqref{eq:rateprob} prevents intensities greater than one from being misused as probabilities.
+
+A trial is rescued when ALLD first reaches extinction and fails when ALLD fixes. A pre-rescue trial is capped at $100{,}000$ updates. Rescued trials then continue for $50N$ updates, allowing us to measure the ALLC frequency after rescue even though constant switching makes all-ALLC nonabsorbing. We use $1{,}000$ independent trials for each value of $\mu_0$ and report means with normal-approximation 95\% confidence intervals. No trial in the reported parameter sweep was censored.
+
+\section{Analytical Results}
+
+The boundary $z=0$ permits a direct comparison of the two rules. It is also where their difference is clearest: constant switching remains active, whereas defector-responsive switching stops.
+
+\begin{proposition}
+Assume $b>c>0$ and write $q=b-c$.
+\begin{enumerate}
+\item Under constant switching, the nontrivial ALLC--TFT boundary equilibrium is
+\begin{equation}
+x_F^*=1-\sqrt{\frac{2\mu_0}{q}},\qquad
+y_F^*=\sqrt{\frac{2\mu_0}{q}},
+\label{eq:fixededge}
+\end{equation}
+and exists for $0\leq\mu_0\leq q/2$. Its transverse ALLD invasion exponent is
+\begin{equation}
+g_F(\mu_0)=c-b\sqrt{\frac{2\mu_0}{q}}+\mu_0.
+\label{eq:fixedinv}
+\end{equation}
+\item Under defector-responsive switching with readiness cost $k$, the nontrivial boundary equilibrium is
+\begin{equation}
+x_R^*=1-\frac{2k}{q},\qquad y_R^*=\frac{2k}{q},
+\label{eq:adaptiveedge}
+\end{equation}
+and exists for $0\leq k\leq q/2$. It resists an infinitesimal ALLD invasion if
+\begin{equation}
+k>\frac{cq}{b+c}.
+\label{eq:adaptiveinv}
+\end{equation}
+\item Whenever the two boundary equilibria are the relevant stable outcomes, their ALLC frequencies are equal at
+\begin{equation}
+k^*(\mu_0)=\sqrt{\frac{q\mu_0}{2}}.
+\label{eq:threshold}
+\end{equation}
+For $cq/(b+c)<k<k^*(\mu_0)$, the responsive equilibrium contains more ALLC than the constant-switching equilibrium.
+\end{enumerate}
+\end{proposition}
+
+\noindent\emph{Proof.}
+On $z=0$, let $y=1-x$. For constant switching, the ALLC equation reduces to
+\begin{equation}
+\dot x=x\left(\frac{q}{2}y^2-\mu_0\right),
+\end{equation}
+which gives \eqref{eq:fixededge}. At that equilibrium the mean payoff is $q-\mu_0$, so the growth rate of rare ALLD is $b(1-y_F^*)-(q-\mu_0)$, yielding \eqref{eq:fixedinv}.
+
+For responsive switching, $\mu_0z=0$ on the boundary. Coexistence requires equality of the cost-adjusted ALLC and TFT payoffs:
+$q-k=q(1-y/2)$. This gives \eqref{eq:adaptiveedge}. The growth rate of rare ALLD is
+\begin{equation}
+b\left(1-\frac{2k}{q}\right)-(q-k)
+=c-\frac{b+c}{q}k,
+\end{equation}
+which is negative precisely under \eqref{eq:adaptiveinv}. Finally, equating \eqref{eq:fixededge} and \eqref{eq:adaptiveedge} gives \eqref{eq:threshold}; the strict comparison follows from the same expressions. \hfill$\square$
+
+For the numerical values $b=5$ and $c=1$, \eqref{eq:threshold} becomes $k^*=\sqrt{2\mu_0}$, while transverse stability of the responsive boundary requires $k>2/3$. At the break-even value this condition holds when $\mu_0>2/9$. The constant boundary is transversely stable when $g_F(\mu_0)<0$ and exists through $\mu_0=2$. These qualifications are essential: outside the joint boundary-stability regime, equating two boundary formulas does not compare the attracting states reached from the interior.
+
+\section{Numerical Results}
+
+\subsection{Infinite-population comparison and cost check}
+
+We integrated \eqref{eq:replicator} from $(x,y,z)=(1/3,1/3,1/3)$ to $t=800$ with an eighth-order adaptive solver, relative tolerance $2\times10^{-11}$, and absolute tolerance $2\times10^{-13}$. The numerical implementation neither clips negative values nor renormalizes the state after integration; every terminal state was checked against the simplex constraint.
+
+Figure \ref{fig:deterministic}A shows that constant switching has a narrow favorable region and then progressively removes ALLC as $\mu_0$ increases. Responsive switching has a low-intensity tradeoff but rises to a high-ALLC equilibrium over the plotted range. For example, at $\mu_0=0.5$, the terminal ALLC frequencies are $0.500$ under constant switching and $0.643$ under responsive switching; at $\mu_0=1$, they are $0.293$ and $0.701$, respectively. At $\mu_0=2$, the constant-switching boundary reaches zero ALLC, while the responsive trajectory has terminal ALLC frequency $0.738$.
+
+For the costly model, we evaluated \eqref{eq:threshold} at 31 values of $\mu_0$ from $0.45$ to $1.95$. Figure \ref{fig:deterministic}B displays the predicted curve. The maximum absolute difference between the numerically integrated costly-responsive ALLC equilibrium and its constant-switching counterpart was $2.28\times10^{-11}$. This numerical check supports the implementation, while the result itself follows analytically from the proposition.
+
+\begin{figure*}[!t]
+\centering
+\includegraphics[width=0.88\textwidth]{figures_revised/deterministic_and_cost.pdf}
+\caption{Deterministic comparison for $b=5$ and $c=1$. (A) Terminal ALLC frequency from an interior initial condition under constant and defector-responsive switching. (B) Exact break-even readiness cost from \eqref{eq:threshold}; markers show parameters checked by numerical integration.}
+\label{fig:deterministic}
+\end{figure*}
+
+\subsection{Finite-population tradeoff}
+
+Figure \ref{fig:finite} separates three quantities that were previously conflated: whether ALLD becomes extinct, the composition at that first extinction time, and composition after a fixed post-rescue interval. At low intensity, constant switching rescues more reliably. For example, at $\mu_0=0.2$, the estimated rescue probabilities are $0.999$ for constant switching and $0.749\pm0.027$ for responsive switching (95\% confidence interval half-width). The responsive rule reacts weakly while the single invader has frequency $1/N$, explaining this delay.
+
+The comparison reverses for post-rescue composition. At $\mu_0=0.6$, constant and responsive rescue probabilities are $1.000$ and $0.988\pm0.007$, but their mean ALLC frequencies after $50N$ further updates are $0.370\pm0.003$ and $0.985\pm0.008$. At $\mu_0=1.4$, both rescue probabilities are one to the displayed precision, whereas post-rescue ALLC frequencies are $0.029\pm0.003$ for constant switching and $1.000$ to three decimal places for responsive switching. Constant switching therefore buys rapid production of TFT at the cost of continuing conversion after ALLD is gone. The responsive rule increasingly combines high rescue probability with preservation of ALLC as its intensity rises.
+
+\begin{figure*}[!t]
+\centering
+\includegraphics[width=0.98\textwidth]{figures_revised/finite_population.pdf}
+\caption{Finite-population results for $N=100$ and $1{,}000$ trials per point. Lines show sample means and shading shows 95\% confidence intervals. (A) Probability that ALLD reaches extinction before fixation. (B) ALLC frequency when ALLD first reaches extinction. (C) ALLC frequency after $50N$ additional updates.}
+\label{fig:finite}
+\end{figure*}
+
+\section{Discussion}
+
+The defector-proportional response is an appealing negative-feedback mechanism, but it is not new to this paper: Pal et al. \cite{pal2025} presented it in their Supplementary Figure S8. The new analytical result here is the general break-even expression \eqref{eq:threshold}, together with the existence and invasion conditions needed to interpret it. The threshold makes the mechanism's cost constraint explicit. It also shows that the special-case expression $\sqrt{2\mu_0}$ is a consequence of choosing $b=5$ and $c=1$, rather than a parameter-free law.
+
+The finite-population results refine the mechanism's interpretation. Constant switching can be more reliable when a defector is initially rare because it does not wait for a strong population-level signal. Responsive switching, however, shuts off exactly when $z=0$ and consequently avoids continued conversion of ALLC after rescue. Reporting both rescue probability and post-rescue composition exposes this tradeoff. It would be misleading to report ``ALLC fixation'' under constant one-way switching, because all-ALLC is not absorbing: the next ALLC offspring can switch to TFT.
+
+Several limitations restrict biological interpretation. The payoff matrix is a deliberately reduced representation of noisy repeated play, the switching direction is one-way, and the response uses instantaneous global knowledge of $z$. The readiness cost $k$ is an abstract payoff penalty rather than a calibrated energetic measurement. The finite model also assumes that payoff enters fitness exponentially and that the same rate-to-probability mapping applies at every update. Thus, the results establish properties of a mathematical feedback model, not evidence for a particular molecular, microbial, or behavioral sensing mechanism. A biologically specific application would need local or noisy detection, a mechanistic response timescale, and parameters tied to data.
+
+\section{Conclusion}
+
+For the three-strategy rescue model, defector-responsive switching trades slower activation at low invader abundance for much better preservation of unconditional cooperation after rescue. In the deterministic costly model, the exact break-even readiness cost is the square root of one half the product of net cooperative benefit and constant switching intensity, subject to explicit boundary-stability conditions. Correctly converting rates to probabilities and measuring a finite post-rescue horizon makes the same tradeoff visible in finite populations. These results narrow the claim from proposing a mechanism to rigorously characterizing when an existing mechanism is advantageous.
+
+\section*{Data and Code Availability}
+
+The supplementary archive contains the Python source, numerical data, and figure files needed to reproduce every result reported here. Running \texttt{python revised\_analysis.py} regenerates the deterministic and finite-population outputs. A permanent public repository URL may be added to the accepted version.
+
+\section*{Declaration of Competing Interest}
+
+The author declares no competing interests.
+
+\IEEEtriggeratref{6}
+\begin{thebibliography}{10}
+
+\bibitem{axelrod1981}
+R. Axelrod and W. D. Hamilton, ``The evolution of cooperation,'' \emph{Science}, vol. 211, pp. 1390--1396, 1981.\\
+\url{https://doi.org/10.1126/science.7466396}
+
+\bibitem{nowak2006}
+M. A. Nowak, ``Five rules for the evolution of cooperation,'' \emph{Science}, vol. 314, pp. 1560--1563, 2006.\\
+\url{https://doi.org/10.1126/science.1133755}
+
+\bibitem{hofbauer1998}
+J. Hofbauer and K. Sigmund, \emph{Evolutionary Games and Population Dynamics}. Cambridge, UK: Cambridge University Press, 1998.\\
+\url{https://doi.org/10.1017/CBO9781139173179}
+
+\bibitem{page2002}
+K. M. Page and M. A. Nowak, ``Unifying evolutionary dynamics,'' \emph{Journal of Theoretical Biology}, vol. 219, pp. 93--98, 2002.\\
+\url{https://doi.org/10.1006/jtbi.2002.3066}
+
+\bibitem{pal2025}
+S. Pal, A. Lambert, and M. A. Nowak, ``Stabilizing unconditional cooperation,'' \emph{Proceedings of the Royal Society A}, vol. 481, art. 20240945, 2025.\\
+\url{https://doi.org/10.1098/rspa.2024.0945}
+
+\bibitem{bergin1996}
+J. Bergin and B. L. Lipman, ``Evolution with state-dependent mutations,'' \emph{Econometrica}, vol. 64, pp. 943--956, 1996.\\
+\url{https://www.jstor.org/stable/2171851}
+
+\bibitem{moran1962}
+P. A. P. Moran, \emph{The Statistical Processes of Evolutionary Theory}. Oxford, UK: Clarendon Press, 1962.
+
+\bibitem{nowak2004}
+M. A. Nowak, A. Sasaki, C. Taylor, and D. Fudenberg, ``Emergence of cooperation and evolutionary stability in finite populations,'' \emph{Nature}, vol. 428, pp. 646--650, 2004.\\
+\url{https://doi.org/10.1038/nature02414}
+
+\bibitem{hofbauer1985}
+J. Hofbauer, ``The selection mutation equation,'' \emph{Journal of Mathematical Biology}, vol. 23, pp. 41--53, 1985.\\
+\url{https://doi.org/10.1007/BF00276557}
+
+\bibitem{nowak1992}
+M. A. Nowak and K. Sigmund, ``Tit for tat in heterogeneous populations,'' \emph{Nature}, vol. 355, pp. 250--253, 1992.\\
+\url{https://doi.org/10.1038/355250a0}
+
+\end{thebibliography}
+
+\end{document}

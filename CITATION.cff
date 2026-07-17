@@ -1,0 +1,17 @@
+cff-version: 1.2.0
+message: "If you use this code or model, please cite the accompanying manuscript."
+title: "Defector-responsive strategy switching"
+type: software
+authors:
+  - family-names: Gunjal
+    given-names: Aarush
+version: 1.0.0
+date-released: 2026-07-17
+preferred-citation:
+  type: article
+  title: "Analytical and Finite-Population Properties of Defector-Responsive Strategy Switching"
+  authors:
+    - family-names: Gunjal
+      given-names: Aarush
+  year: 2026
+  notes: "Manuscript prepared for submission to BIOMATH."
