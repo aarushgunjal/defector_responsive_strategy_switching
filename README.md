@@ -89,8 +89,3 @@ This comparison is subject to the existence and invasion-stability conditions st
 ## Citation
 
 Until a journal citation or preprint DOI is available, cite the manuscript title and this repository. Update `CITATION.cff` after a DOI is assigned.
-
-## License
-
-No software license has been selected in this package. Before enabling third-party reuse, add a license such as MIT or BSD-3-Clause if that matches the author's preference.
-
