@@ -5,6 +5,7 @@ type: software
 authors:
   - family-names: Gunjal
     given-names: Aarush
+    orcid: "https://orcid.org/0009-0004-4007-532X"
 version: 1.0.0
 date-released: 2026-07-17
 repository-code: "https://github.com/aarushgunjal/defector_responsive_strategy_switching"
@@ -16,4 +17,4 @@ preferred-citation:
     - family-names: Gunjal
       given-names: Aarush
   year: 2026
-  notes: "Manuscript prepared for submission to BIOMATH."
+  notes: "Manuscript prepared for submission to Dynamic Games and Applications."
