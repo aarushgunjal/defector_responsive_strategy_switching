@@ -1,13 +1,13 @@
 cff-version: 1.2.0
-message: "If you use this code or model, please cite the accompanying manuscript."
+message: "If you use this code or model, please cite the accompanying preprint."
 title: "Defector-responsive strategy switching"
 type: software
 authors:
   - family-names: Gunjal
     given-names: Aarush
     orcid: "https://orcid.org/0009-0004-4007-532X"
-version: 1.0.0
-date-released: 2026-07-17
+version: 2.0.0
+date-released: 2026-09-22
 repository-code: "https://github.com/aarushgunjal/defector_responsive_strategy_switching"
 url: "https://github.com/aarushgunjal/defector_responsive_strategy_switching"
 preferred-citation:
@@ -16,5 +16,7 @@ preferred-citation:
   authors:
     - family-names: Gunjal
       given-names: Aarush
+      orcid: "https://orcid.org/0009-0004-4007-532X"
   year: 2026
-  notes: "Manuscript prepared for submission to Dynamic Games and Applications."
+  doi: "10.21203/rs.3.rs-10502433/v1"
+  notes: "Research Square preprint; revised manuscript under review at Dynamic Games and Applications."
