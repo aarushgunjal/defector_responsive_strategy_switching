@@ -1,6 +1,6 @@
 # Defector-responsive strategy switching: revised analysis
 
-This repository reproduces the revision of **Analytical and Finite-Population Properties of Defector-Responsive Strategy Switching** submitted to *Dynamic Games and Applications*.
+This repository contains the article information for **Analytical and Finite-Population Properties of Defector-Responsive Strategy Switching** submitted to *Dynamic Games and Applications*. Now published online at https://doi.org/10.1007/s13235-026-00722-1.
 
 ## What changed in the revision
 
